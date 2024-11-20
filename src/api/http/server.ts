@@ -32,20 +32,22 @@ import { getAdressByID } from "./routes/Adress/find-by-id-adress-route";
 import cors from "@fastify/cors";
 import { getEventsByUserID } from "./routes/Events/find-by-userID-events";
 
-const app = fastify().withTypeProvider<ZodTypeProvider>();
+const app = fastify({
+	requestTimeout: 30000,
+}).withTypeProvider<ZodTypeProvider>();
 app.register(cors, {
-  origin: '*',
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
+	origin: '*',
+	methods: ['GET', 'POST', 'PUT', 'DELETE'],
+	allowedHeaders: ['Content-Type', 'Authorization'],
 });
 
 
 app.listen({ port: 3333, host: '0.0.0.0' }, (err, address) => {
-  if (err) {
-    console.error('Erro ao iniciar o servidor:', err);
-    process.exit(1);
-  }
-  console.log(`Servidor HTTP rodando em ${address}`);
+	if (err) {
+		console.error('Erro ao iniciar o servidor:', err);
+		process.exit(1);
+	}
+	console.log(`Servidor HTTP rodando em ${address}`);
 });
 app.setValidatorCompiler(validatorCompiler);
 app.setSerializerCompiler(serializerCompiler);
