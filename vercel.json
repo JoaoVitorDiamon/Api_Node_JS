@@ -6,10 +6,10 @@
       "use": "@vercel/node"
     }
   ],
-    "routes": [
-      {
-        "src": "/api/Adress/get-all-adress-route",
-        "dest": "/src/http/api/Address/get-all-adress-route.ts"
-      }
-    ]
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "src/http/api/$1"
+    }
+  ]
 }
