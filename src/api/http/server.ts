@@ -28,9 +28,7 @@ import cors from '@fastify/cors';
 import { getEventsByUserID } from './routes/Events/find-by-userID-events';
 import { serializerCompiler, validatorCompiler, type ZodTypeProvider } from 'fastify-type-provider-zod';
 
-const app = fastify({
-  requestTimeout: 30000,
-}).withTypeProvider<ZodTypeProvider>();
+const app = fastify().withTypeProvider<ZodTypeProvider>();
 
 app.register(cors, {
   origin: '*',
