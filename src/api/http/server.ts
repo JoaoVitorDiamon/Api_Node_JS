@@ -27,6 +27,7 @@ import { getAdressByID } from './routes/Adress/find-by-id-adress-route';
 import cors from '@fastify/cors';
 import { getEventsByUserID } from './routes/Events/find-by-userID-events';
 import { serializerCompiler, validatorCompiler, type ZodTypeProvider } from 'fastify-type-provider-zod';
+import { getAllAdress } from '../../functions/Adress/get-all-adress';
 
 const app = fastify().withTypeProvider<ZodTypeProvider>();
 
@@ -38,6 +39,11 @@ app.register(cors, {
 
 app.get('/', async (request, reply) => {
   return { hello: 'Mundo e Lindo' };
+});
+
+app.get("/adress", async (_req, reply) => {
+	const getAllAdresss = await getAllAdress();
+	reply.status(200).send(getAllAdresss);
 });
 
 app.setValidatorCompiler(validatorCompiler);
@@ -71,6 +77,6 @@ app.register(getEventsAndGuests);
 app.register(getTokenSpotifyy);
 
 export default async function handler(req: any, res: any) {
-  await app.ready(); 
-  app.server.emit('request', req, res); 
+  await app.ready(); // Garante que o Fastify esteja pronto
+  app.server.emit('request', req, res); // Emite a requisição para o Fastify processar
 }
