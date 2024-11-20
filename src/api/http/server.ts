@@ -40,12 +40,12 @@ app.register(cors, {
 });
 
 
-app.listen({ port: 3333, host: "0.0.0.0" }, (err, address) => {
-	if (err) {
-		console.error("Erro ao iniciar o servidor:", err);
-		process.exit(1);
-	}
-	console.log(`Servidor HTTP rodando em ${address}`);
+app.listen(3333, (err, address) => {
+  if (err) {
+    console.error('Erro ao iniciar o servidor:', err);
+    process.exit(1);
+  }
+  console.log(`Servidor HTTP rodando em ${address}`);
 });
 app.setValidatorCompiler(validatorCompiler);
 app.setSerializerCompiler(serializerCompiler);
