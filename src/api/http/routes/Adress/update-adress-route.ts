@@ -1,30 +1,32 @@
 import z from "zod";
 import app from "../../server";
 import { updateAdress } from "../../../../functions/Adress/update-all-adress";
-
-export const updatesAdress = async () => {
-	app.put(
+import type { FastifyInstance } from "fastify/types/instance";
+const AddressSchema = z.object({
+	cep: z.string({ message: "cep is required" }),
+	street: z.string({ message: "street is required" }),
+	number: z.number({ message: "number is required" }),
+	city: z.string({ message: "city is required" }),
+	state: z.string({ message: "state is required" }),
+	userID: z.string({ message: "userID is required" }),
+	complement: z.string({ message: "complement is required" }),
+	neighborhood: z.string({ message: "neighborhood is required" }),
+	country: z.string({ message: "country is required" }),
+});
+const ParamsSchema = z.object({
+	id: z.string({ message: "id is required" }), 
+});
+export const updatesAdress = async (fastify: FastifyInstance) => {
+	fastify.put(
 		"/adress/:id",
 		{
 			schema: {
-				params: z.object({
-					id: z.string({ message: "id is required" }),
-				}),
-				body: z.object({
-					cep: z.string({ message: "cep is required" }),
-					street: z.string({ message: "street is required" }),
-					number: z.number({ message: "number is required" }),
-					city: z.string({ message: "city is required" }),
-					state: z.string({ message: "state is required" }),
-					complement: z.string({ message: "complement is required" }),
-					userID: z.string({ message: "userID is required" }),
-					neighborhood: z.string({ message: "neighborhood is required" }),
-					country: z.string({ message: "country is required" }),
-				}),
+				params: ParamsSchema,
+				body:AddressSchema
 			},
 		},
 		async (request, reply) => {
-			const { id } = request.params;
+			const { id } = request.params as z.infer<typeof ParamsSchema>;
 			const {
 				cep,
 				street,
@@ -35,7 +37,7 @@ export const updatesAdress = async () => {
 				userID,
 				neighborhood,
 				country,
-			} = request.body;
+			} = request.body as z.infer<typeof AddressSchema>;
 			const updatedAdress = await updateAdress(
 				{ cep, street, number, city, state, complement, neighborhood, country, userID },
 				id,

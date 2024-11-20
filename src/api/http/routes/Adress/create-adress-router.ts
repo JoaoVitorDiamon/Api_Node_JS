@@ -1,23 +1,27 @@
 import z from "zod";
 import { createAdress } from "../../../../functions/Adress/create-adress";
-import app  from "../../server";
+import app from "../../server";
+import type { FastifyInstance } from 'fastify';
 
-export const createdAdress = async () => {
-	app.post(
+const AddressSchema = z.object({
+	cep: z.string({ message: "cep is required" }),
+	street: z.string({ message: "street is required" }),
+	number: z.number({ message: "number is required" }),
+	city: z.string({ message: "city is required" }),
+	state: z.string({ message: "state is required" }),
+	userID: z.string({ message: "userID is required" }),
+	complement: z.string({ message: "complement is required" }),
+	neighborhood: z.string({ message: "neighborhood is required" }),
+	country: z.string({ message: "country is required" }),
+});
+
+type AddressBody = z.infer<typeof AddressSchema>;
+export const createdAdress = async (fastify: FastifyInstance) => {
+	fastify.post(
 		"/adress",
 		{
 			schema: {
-				body: z.object({
-					cep: z.string({ message: "cep is required" }),
-					street: z.string({ message: "street is required" }),
-					number: z.number({ message: "number is required" }),
-					city: z.string({ message: "city is required" }),
-					state: z.string({ message: "state is required" }),
-					userID: z.string({ message: "userID is required" }),
-					complement: z.string({ message: "complement is required" }),
-					neighborhood: z.string({ message: "neighborhood is required" }),
-					country: z.string({ message: "country is required" }),
-				}),
+				body: AddressSchema,  
 			},
 		},
 		async (req, reply) => {
@@ -31,7 +35,7 @@ export const createdAdress = async () => {
 				userID,
 				neighborhood,
 				country,
-			} = req.body;
+			} = req.body as AddressBody;
 			const createdAdress = await createAdress({
 				cep,
 				street,

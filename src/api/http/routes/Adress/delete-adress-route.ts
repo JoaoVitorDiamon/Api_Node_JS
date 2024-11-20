@@ -1,19 +1,22 @@
 import z from "zod";
-import app  from "../../server";
+import app from "../../server";
 import { deleteAdressbyID } from "../../../../functions/Adress/delete-adress";
+import type { FastifyInstance } from 'fastify';
 
- const deletesAdress = async () => {
-	app.delete(
+
+const ParamsSchema = z.object({
+	id: z.string({ message: "id is required" }), 
+});
+const deletesAdress = async (fastify: FastifyInstance) => {
+	fastify.delete(
 		"/adress/:id",
 		{
 			schema: {
-				params: z.object({
-					id: z.string({ message: "id is required" }),
-				}),
-			},
+        params: ParamsSchema, 
+      }, //,
 		},
 		async (request, reply) => {
-			const { id } = request.params;
+			const { id } = request.params as z.infer<typeof ParamsSchema>;
 			const deleteAdress = await deleteAdressbyID(id);
 
 			reply.status(204).send({
