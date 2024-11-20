@@ -4,7 +4,9 @@
   "main": "index.js",
   "scripts": {
     "start": "tsx watch --env-file .env src/api/http/server.ts",
-    "seed": "tsx --env-file .env src/db/seed.ts"
+    "seed": "tsx --env-file .env src/db/seed.ts",
+    "build": "tsc"
+
   },
   "keywords": [],
   "author": "",
