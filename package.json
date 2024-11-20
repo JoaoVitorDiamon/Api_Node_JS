@@ -5,8 +5,8 @@
   "scripts": {
     "start": "tsx watch  src/api/http/server.ts",
     "seed": "tsx --env-file .env src/db/seed.ts",
-    "build": "tsc"
-
+    "build": "tsc",
+    "vercel-build":" npx drizzle-kit push "
   },
   "keywords": [],
   "author": "",
