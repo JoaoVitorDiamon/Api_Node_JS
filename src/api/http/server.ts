@@ -70,4 +70,7 @@ app.register(deleteBuyLists);
 app.register(getEventsAndGuests);
 app.register(getTokenSpotifyy);
 
-export default app;
+export default async function handler(req: any, res: any) {
+  await app.ready(); 
+  app.server.emit('request', req, res); 
+}
