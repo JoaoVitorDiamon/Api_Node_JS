@@ -42,15 +42,22 @@ app.register(cors, {
 });
 
 
-app.listen({ port: 3333, host: '0.0.0.0' }, (err, address) => {
-  if (err) {
-    console.error('Erro ao iniciar o servidor:', err);
-    process.exit(1);
-  }
-  console.log(`Servidor HTTP rodando em ${address}`);
+if (!process.env.VERCEL) { 
+  app.listen({ port: 3333, host: '0.0.0.0' }, (err, address) => {
+    if (err) {
+      console.error('Erro ao iniciar o servidor:', err);
+      process.exit(1);
+    }
+    console.log(`Servidor HTTP rodando em ${address}`);
+  });
+} else {
+  module.exports = app;
+}
+
+
+app.get('/', async (request, reply) => {
+  return { hello: 'Mundo e Lindo' };
 });
-
-
 app.setValidatorCompiler(validatorCompiler);
 app.setSerializerCompiler(serializerCompiler);
 
