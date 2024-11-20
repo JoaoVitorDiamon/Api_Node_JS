@@ -28,54 +28,56 @@ import cors from '@fastify/cors';
 import { getEventsByUserID } from './routes/Events/find-by-userID-events';
 import { serializerCompiler, validatorCompiler, type ZodTypeProvider } from 'fastify-type-provider-zod';
 
+// Crie a instância do Fastify
 const app = fastify({
   requestTimeout: 30000,
 }).withTypeProvider<ZodTypeProvider>();
 
+// Registre o CORS
 app.register(cors, {
   origin: '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 });
 
+// Defina uma rota simples
 app.get('/', async (request, reply) => {
   return { hello: 'Mundo e Lindo' };
 });
 
+// Configurações do Fastify
 app.setValidatorCompiler(validatorCompiler);
 app.setSerializerCompiler(serializerCompiler);
 
-// Registrando rotas
+// Registrando as rotas (de forma modularizada)
 app.register(getEvents);
 app.register(createEvent);
 app.register(updateEvent);
 app.register(DeleteEvent);
 app.register(getEventsByID);
 app.register(getEventsByUserID);
-
 app.register(getGuests);
 app.register(createsGuest);
 app.register(updatesGuests);
 app.register(DeleteGuests);
 app.register(getGuestsByID);
-
 app.register(getKittys);
 app.register(createKittys);
 app.register(updatesKitty);
 app.register(DeleteKitty);
-
 app.register(getAdress);
 app.register(createdAdress);
 app.register(updatesAdress);
 app.register(deletesAdress);
 app.register(getAdressByID);
-
 app.register(getBuyLists);
 app.register(createBuyLists);
 app.register(updateBuyLists);
 app.register(deleteBuyLists);
-
 app.register(getEventsAndGuests);
 app.register(getTokenSpotifyy);
 
+// Exportação do Fastify como função serverless
 export default app;
+
+// Aqui o Vercel chamará essa função exportada ao receber as requisições
