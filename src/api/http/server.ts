@@ -32,7 +32,7 @@ import { getAdressByID } from "./routes/Adress/find-by-id-adress-route";
 import cors from "@fastify/cors";
 import { getEventsByUserID } from "./routes/Events/find-by-userID-events";
 
-export const app = fastify().withTypeProvider<ZodTypeProvider>();
+const app = fastify().withTypeProvider<ZodTypeProvider>();
 app.register(cors, {
   origin: '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
@@ -88,3 +88,4 @@ app.register(getEventsAndGuests);
 
 //Spotify
 app.register(getTokenSpotifyy);
+export default app; 
