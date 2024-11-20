@@ -1,5 +1,5 @@
 import z from "zod";
-import { app } from "../../server";
+import app  from "../../server";
 import { updateAdress } from "../../../../functions/Adress/update-all-adress";
 
 export const updatesAdress = async () => {

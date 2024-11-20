@@ -1,5 +1,5 @@
 import z from "zod";
-import { app } from "../../server";
+import app  from "../../server";
 import { deleteGuest } from "../../../../functions/Guests/delete-guest";
 
 export const DeleteGuests = async () => {

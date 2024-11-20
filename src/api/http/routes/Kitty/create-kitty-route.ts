@@ -1,5 +1,6 @@
 import type { FastifyPluginAsyncZod } from "fastify-type-provider-zod";
 import z from "zod";
+import app  from "../../server";
 import { createKitty } from "../../../../functions/Kitty/create-kitty";
 
 export const createKittys: FastifyPluginAsyncZod = async (app) => {

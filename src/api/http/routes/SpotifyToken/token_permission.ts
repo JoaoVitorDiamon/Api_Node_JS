@@ -1,6 +1,7 @@
 import type { FastifyPluginAsyncZod } from "fastify-type-provider-zod";
 import { authOptions } from "../../../../functions/SpotifyToken/token_permission";
 import axios, { request } from "axios";
+import app  from "../../server";
 
 export const getTokenSpotifyy: FastifyPluginAsyncZod = async (app) => {
 	// biome-ignore lint/style/noVar: <explanation>

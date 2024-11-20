@@ -1,5 +1,5 @@
 import z from "zod";
-import { app } from "../../server";
+import app  from "../../server";
 import { createBuyList } from "../../../../functions/buyList/create-buyList";
 
 export const createBuyLists = async () => {

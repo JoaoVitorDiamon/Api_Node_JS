@@ -1,6 +1,6 @@
 import z from "zod";
 import { createAdress } from "../../../../functions/Adress/create-adress";
-import { app } from "../../server";
+import app  from "../../server";
 
 export const createdAdress = async () => {
 	app.post(

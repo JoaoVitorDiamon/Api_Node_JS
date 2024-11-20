@@ -1,6 +1,7 @@
 import type { FastifyPluginAsyncZod } from "fastify-type-provider-zod";
 import z from "zod";
 import { findEventByUserID } from "../../../../functions/Events/find-by-userID-events";
+import app  from "../../server";
 
 export const getEventsByUserID: FastifyPluginAsyncZod = async (app) => {
 	app.get(

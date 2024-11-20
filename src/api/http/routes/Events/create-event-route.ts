@@ -1,6 +1,6 @@
 import z from "zod";
 import { createEvents } from "../../../../functions/Events/create-event";
-import { app } from "../../server";
+import app  from "../../server";
 
 export const createEvent = async () => {
 	app.post(

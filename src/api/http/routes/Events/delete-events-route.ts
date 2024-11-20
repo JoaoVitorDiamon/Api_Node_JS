@@ -1,5 +1,5 @@
 import z from "zod";
-import { app } from "../../server";
+import app  from "../../server";
 import deleteEvent from "../../../../functions/Events/delete-events";
 
 export const DeleteEvent = async () => {

@@ -1,5 +1,5 @@
 import z from 'zod'
-import { app } from '../../server'
+import app  from "../../server";
 import { updateKitty } from '../../../../functions/Kitty/update-kitty'
 
 export const updatesKitty = async () => {

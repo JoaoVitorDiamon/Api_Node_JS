@@ -1,5 +1,5 @@
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod'
-import { app } from '../../server'
+import app  from "../../server";
 import z from 'zod'
 import { desc } from 'drizzle-orm'
 import { getAllKittys } from '../../../../functions/Kitty/get-all-kittys'

@@ -1,6 +1,6 @@
 import z from 'zod'
 import { UpdateEvents } from '../../../../functions/Events/update-event'
-import { app } from '../../server'
+import app  from "../../server";
 
 export const updateEvent = async () => {
   app.put(
