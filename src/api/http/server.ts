@@ -42,17 +42,14 @@ app.register(cors, {
 });
 
 
-const startServer = async () => {
-  try {
-    const address = await app.listen({ port: 3333 });
-    console.log(`Servidor HTTP rodando em ${address}`);
-  } catch (err) {
-    console.error("Erro ao iniciar o servidor:", err);
+app.listen({ port: 3333, host: '0.0.0.0' }, (err, address) => {
+  if (err) {
+    console.error('Erro ao iniciar o servidor:', err);
     process.exit(1);
   }
-};
+  console.log(`Servidor HTTP rodando em ${address}`);
+});
 
-startServer();
 
 app.setValidatorCompiler(validatorCompiler);
 app.setSerializerCompiler(serializerCompiler);
