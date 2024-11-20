@@ -40,7 +40,7 @@ app.register(cors, {
 });
 
 
-app.listen(3333, (err, address) => {
+app.listen({ port: 3333, host: '0.0.0.0' }, (err, address) => {
   if (err) {
     console.error('Erro ao iniciar o servidor:', err);
     process.exit(1);
