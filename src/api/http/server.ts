@@ -45,7 +45,7 @@ app.get('/', async (request, reply) => {
 app.setValidatorCompiler(validatorCompiler);
 app.setSerializerCompiler(serializerCompiler);
 
-// Events / Eventos
+// Registrando rotas
 app.register(getEvents);
 app.register(createEvent);
 app.register(updateEvent);
@@ -53,48 +53,29 @@ app.register(DeleteEvent);
 app.register(getEventsByID);
 app.register(getEventsByUserID);
 
-// Guests / Convidados
 app.register(getGuests);
 app.register(createsGuest);
 app.register(updatesGuests);
 app.register(DeleteGuests);
 app.register(getGuestsByID);
 
-// Kitts / Vaquinha
 app.register(getKittys);
 app.register(createKittys);
 app.register(updatesKitty);
 app.register(DeleteKitty);
 
-// Adress / Endereco
 app.register(getAdress);
 app.register(createdAdress);
 app.register(updatesAdress);
 app.register(deletesAdress);
 app.register(getAdressByID);
 
-// BuyList / Lista de Compras
 app.register(getBuyLists);
 app.register(createBuyLists);
 app.register(updateBuyLists);
 app.register(deleteBuyLists);
 
-// EventAndGuests / Eventos e Convidados
 app.register(getEventsAndGuests);
-
-// Spotify
 app.register(getTokenSpotifyy);
-
-// Para execução local, adicione um `listen` padrão
-if (process.env.NODE_ENV !== 'production') {
-  const port = 3333;
-  app.listen({ port, host: '0.0.0.0' }, (err, address) => {
-    if (err) {
-      console.error('Erro ao iniciar o servidor:', err);
-      process.exit(1);
-    }
-    console.log(`Servidor HTTP rodando em ${address}`);
-  });
-}
 
 export default app;
