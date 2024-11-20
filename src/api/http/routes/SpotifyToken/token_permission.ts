@@ -23,7 +23,7 @@ export const getTokenSpotifyy: FastifyPluginAsyncZod = async (app) => {
 					error: error.response?.data || "Erro ao obter o token.",
 				});
 			} else {
-				reply.status(500).send({ error: error.message });
+				reply.status(500).send({ error: (error as Error).message });
 			}
 		}
 	});
