@@ -42,7 +42,7 @@ app.register(cors, {
 });
 
 
-app.listen(3333).then((address) => {
+app.listen({port:3333}).then((address) => {
 	console.log(`Servidor HTTP rodando em ${address}`);
 }).catch((err) => {
 	console.error("Erro ao iniciar o servidor:", err);
